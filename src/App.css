@@ -1,8 +1,12 @@
 body{
 	background-color: #ececf0;
 }
-.App {
-	
+h2,h3,p{
+	text-align:center;
+	font-weight:100;
+}
+.App-mobile{
+	padding:10px;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
