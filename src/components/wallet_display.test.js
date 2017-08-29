@@ -2,9 +2,8 @@ import React from 'react';
 import {expect} from 'chai';
 import {shallow} from 'enzyme';
 
-import AdWidget from './ad_widget';
+import WalletDisplay from './wallet_display';
 
 it('renders without crashing', () => {
-	shallow(<AdWidget/>)
-});
-
+	shallow(<WalletDisplay />)
+})

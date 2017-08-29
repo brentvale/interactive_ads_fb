@@ -47,6 +47,36 @@ body{
 	height: 150px;
 	background-image: url('./images/heading_background.jpg');
 }
+/*WALLET*/
+.Wallet-icon-container{
+	background-color: #f7f7f7;
+	height: 50px;
+	position: absolute;
+	right: 0;
+	top: 100px;
+	width: 50px;
+}
+.Wallet-icon-container:hover{
+	cursor: pointer;
+}
+.Wallet-icon{
+	height: 40px;
+	padding:5px;
+	width: 40px;
+}
+.Wallet-notification{
+	background-color: red;
+	border-radius: 6px;
+	color: white;
+	font-size: 12px;
+	height: 12px;
+	line-height: 12px;
+	position:absolute;
+	top: -6px;
+	left: -6px;
+	text-align:center;
+	width: 12px;
+}
 /*WIDGET*/
 .Animate-more-info-button{
 	animation: button-double-nudge 3s infinite linear;
