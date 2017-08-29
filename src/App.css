@@ -48,6 +48,11 @@ body{
 	background-image: url('./images/heading_background.jpg');
 }
 /*WALLET*/
+.Wallet-brand-display{
+	height: auto;
+	margin-left: 5%;
+	width: 90%;
+}
 .Wallet-contents{
 	background-color: #f7f7f7;
 	height: 500px;
@@ -56,11 +61,26 @@ body{
 	right: -200px;
 	width: 200px;
 }
+.Wallet-contents p.hotel-tonight{
+	color:#6b3299;
+}
+.Wallet-contents p.patagonia{
+	color:#a3a3a3;
+}
 .Wallet-contents-icon{
 	border-radius: 30px;
 	height:60px;
 	margin: 10px;
 	width: 60px;
+}
+.Wallet-contents-icon.empty{
+	display:inline-block;
+}
+.Wallet-contents-icon.empty.hotel-tonight{
+	border: 1px dashed #6b3299;
+}
+.Wallet-contents-icon.empty.patagonia{
+	border: 1px dashed #a3a3a3;
 }
 .Wallet-icon-container{
 	background-color: #f7f7f7;
