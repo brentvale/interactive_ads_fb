@@ -1,0 +1,57 @@
+.App {
+  text-align: center;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+.App-header {
+  background-color: #222;
+  height: 90px;
+  padding: 20px;
+  color: white;
+}
+.App-intro {
+  font-size: large;
+}
+
+/*WIDGET*/
+#animateBackground{
+	background-image: url('./images/hotel_tonight_ad_background.png');
+	background-size: 100% 100%;
+	animation: barber-poll-effect 3s infinite linear;
+}
+@keyframes barber-poll-effect{
+	from{
+		background-position:0px;
+	}
+	to{
+		background-position:-150px;
+	}
+}
+.Widget-container{
+	position:relative;
+}
+div[class^="Widget-layer"]{
+	height:250px;
+	width: 500px;
+	position:absolute;
+}
+div[class^="Widget-layer"] img{
+	height:251px;
+	width: 501px;
+}
+.Widget-layer-1{
+	z-index: 10;
+}
+.Widget-layer-2{
+	z-index: 9;
+}
+.Widget-layer-3{
+	z-index: 8;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
