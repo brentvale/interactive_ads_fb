@@ -93,6 +93,7 @@ h2,h3,p{
 	right: 0px;
 	top: 100px;
 	width: 50px;
+	z-index: 10;
 }
 .Wallet-icon-container.expanded{
 	animation: expand-wallet-icon 0.5s forwards;
