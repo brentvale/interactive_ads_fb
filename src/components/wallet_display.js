@@ -6,7 +6,17 @@ export default class WalletDisplay extends Component{
 	constructor(){
 		super();
 		this.state = {
+			notifications: 1,
 			walletOpen: false
+		};
+		this.handleOpenWallet = this.handleOpenWallet.bind(this);
+	}
+	
+	handleOpenWallet(){
+		if(this.state.walletOpen){
+			this.setState({walletOpen: false});
+		} else {
+			this.setState({notifications: 0, walletOpen: true});
 		}
 	}
 	
@@ -14,16 +24,20 @@ export default class WalletDisplay extends Component{
 		let klassName, walletContents;
 		if(this.state.walletOpen){
 			klassName = 'Wallet-icon-container notifications expanded';
-			walletContents = <WalletContents />;
+			walletContents = <WalletContents/>;
 		} else {
 			klassName = 'Wallet-icon-container notifications';
 			walletContents = "";
 		}
 		
+		let notificationsNumberDisplay = (this.state.notifications > 0) ? <div className="Wallet-notification">{this.state.notifications}</div> : "";
+		
 		return(
-			<div className={klassName}>
+			<div className={klassName} onClick={this.handleOpenWallet}>
 				<img src={WalletIcon} className="Wallet-icon" alt="Wallet Icon" />
-				<div className="Wallet-notification">1</div>
+				{notificationsNumberDisplay}
+				
+				{walletContents}
 			</div>
 		)
 	}

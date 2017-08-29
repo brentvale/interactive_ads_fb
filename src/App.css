@@ -48,13 +48,38 @@ body{
 	background-image: url('./images/heading_background.jpg');
 }
 /*WALLET*/
+.Wallet-contents{
+	background-color: #f7f7f7;
+	height: 500px;
+	position:absolute;
+	top: 0px;
+	right: -200px;
+	width: 200px;
+}
+.Wallet-contents-icon{
+	border-radius: 30px;
+	height:60px;
+	margin: 10px;
+	width: 60px;
+}
 .Wallet-icon-container{
 	background-color: #f7f7f7;
 	height: 50px;
 	position: absolute;
-	right: 0;
+	right: 0px;
 	top: 100px;
 	width: 50px;
+}
+.Wallet-icon-container.expanded{
+	animation: expand-wallet-icon 0.5s forwards;
+}
+@keyframes expand-wallet-icon{
+	from{
+		right:0px;
+	}
+	to{
+		right:200px;
+	}
 }
 .Wallet-icon-container:hover{
 	cursor: pointer;

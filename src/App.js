@@ -97,7 +97,7 @@ class App extends Component {
 	
   render() {
 		const hBlocksFiltered = this.filterBlocksByFilled();
-		const walletDisplay = !this.state.filledToCompletion ? <WalletDisplay /> : "";
+		const walletDisplay = this.state.filledToCompletion ? <WalletDisplay /> : "";
     return (
       <div className="App">
 				<div style={{width: "100%", backgroundColor: "#30599d", height: "38px", position: "absolute", zIndex: "-1" }}></div>
