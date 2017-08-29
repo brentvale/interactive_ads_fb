@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AdWidget from './components/ad_widget';
+import NewsFeed from './components/news_feed';
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,7 +8,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-				<AdWidget />
+				<div style={{width: "100%", backgroundColor: "#30599d", height: "38px", position: "absolute", zIndex: "-1" }}></div>
+				<div className="Layout-container">
+				</div>
+				
+				<NewsFeed />
       </div>
     );
   }

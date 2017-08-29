@@ -2,10 +2,8 @@ import React from 'react';
 import {expect} from 'chai';
 import {shallow} from 'enzyme';
 
-import AdWidgetLayerThreeFill from './ad_widget_layer_3_fill';
+import NewsFeed from './news_feed';
 
 it('renders without crashing', () => {
-	shallow(<AdWidgetLayerThreeFill />);
+	shallow(<NewsFeed />)
 });
-
-

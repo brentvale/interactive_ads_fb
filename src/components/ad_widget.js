@@ -14,6 +14,8 @@ export default class AdWidget extends Component{
 		super();
 		this.state = {
 			userHasTouched: false,
+			//keep array of all recorded mouse coordinates to detect other possible values
+			//ex: users interest or frustration with the ad
 			mouseCoords: new Array(),
 			//coordinates of slices of the 'h' bed for hotel tonight
 			hBlockCoords: [	{leftX: 50, bottomY: 50, width: 20, height: 25, filled: false},   //left side
@@ -24,14 +26,50 @@ export default class AdWidget extends Component{
 											{leftX: 140, bottomY: 80, width: 35, height: 20, filled: false},  //bridge
 											{leftX: 175, bottomY: 80, width: 20, height: 20, filled: false},  //right side
 											{leftX: 175, bottomY: 100, width: 20, height: 20, filled: false} //right side
-										]
+										],
+			filledToCompletion: false
 		};
-		this.updateUserHasTouched = this.updateUserHasTouched.bind(this);
+		this.filterBlocksByFilled = this.filterBlocksByFilled.bind(this);
 		this.handleMouseCoordinates = this.handleMouseCoordinates.bind(this);
+		this.mouseCoordsInsideBlock = this.mouseCoordsInsideBlock.bind(this);
+		this.updateUserHasTouched = this.updateUserHasTouched.bind(this);
 	}
 	
-	updateUserHasTouched(){
-		this.setState({userHasTouched: true});
+	componentDidUpdate(){
+		if(this.state.hBlockCoords.length === this.filterBlocksByFilled().length && !this.state.filledToCompletion){
+			setTimeout(() => {
+				alert("You've claimed your Hotel Tonight Voucher!");
+			}, 300);
+			this.setState({filledToCompletion: true});
+		}
+	}
+	
+	filterBlocksByFilled(){
+		const hBlocksFiltered = this.state.hBlockCoords.filter((el) => {
+															return el.filled;
+														});
+		return hBlocksFiltered;
+	}
+	
+	handleMouseCoordinates(e){
+		let newMouseCoords = this.state.mouseCoords.slice(0);
+		
+		let containerCoords = e.currentTarget.getBoundingClientRect();
+		let xPos = containerCoords.left;
+		let yPos = containerCoords.top;
+		
+		//if the x, y coordinates fall within a possible fill block
+		let targetIdxToFill = this.mouseCoordsInsideBlock({x: e.clientX - xPos, y: e.clientY - yPos});
+		
+		newMouseCoords.push({x: e.clientX - xPos, y: e.clientY - yPos});
+		
+		if(targetIdxToFill){
+			let newHblockCoords = this.state.hBlockCoords.slice(0);
+			newHblockCoords[targetIdxToFill.idx].filled = true;
+			this.setState({mouseCoords: newMouseCoords, hBlockCoords: newHblockCoords});
+		} else {
+			this.setState({mouseCoords: newMouseCoords});
+		}
 	}
 	
 	mouseCoordsInsideBlock(coords){
@@ -51,23 +89,13 @@ export default class AdWidget extends Component{
 		return false;
 	}
 	
-	handleMouseCoordinates(e){
-		let newMouseCoords = this.state.mouseCoords.slice(0);
-		//if the x, y coordinates fall within a possible fill block
-		let targetIdxToFill = this.mouseCoordsInsideBlock({x: e.clientX, y: e.clientY});
-		
-		newMouseCoords.push({x: e.clientX, y: e.clientY});
-		
-		if(targetIdxToFill){
-			let newHblockCoords = this.state.hBlockCoords.slice(0);
-			newHblockCoords[targetIdxToFill.idx].filled = true;
-			this.setState({mouseCoords: newMouseCoords, hBlockCoords: newHblockCoords});
-		} else {
-			this.setState({mouseCoords: newMouseCoords});
-		}
+	updateUserHasTouched(){
+		this.setState({userHasTouched: true});
 	}
 	
 	render(){
+		const hBlocksFiltered = this.filterBlocksByFilled();
+		
 		return(
 			<div className="Widget-container">
 				<AdWidgetLayerOneRecordDraw updateUserHasTouched={this.updateUserHasTouched} 
@@ -75,7 +103,7 @@ export default class AdWidget extends Component{
 																		userHasTouched={this.state.userHasTouched}/>
 				<AdWidgetLayerTwoContentDisplay />
 				<AdWidgetLayerThreeFill userHasTouched={this.state.userHasTouched} 
-																hBlockCoords={this.state.hBlockCoords}/>
+																hBlocksFiltered={hBlocksFiltered}/>
 			</div>
 		);
 	}

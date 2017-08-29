@@ -1,5 +1,8 @@
+body{
+	background-color: #ececf0;
+}
 .App {
-  text-align: center;
+	
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -11,11 +14,54 @@
   padding: 20px;
   color: white;
 }
-.App-intro {
-  font-size: large;
+.Layout-container {
+  background-image: url('./images/landing_background_alpha_center.png');
+	background-size: cover;
+	height: 783px;
+	position:absolute;
+	width: 1000px;
+	z-index: 5;
 }
 
+/*NEWS FEED*/
+.News-feed{
+	height: 90vh;
+	padding-right:17px;
+	position:absolute;
+	overflow-y: scroll;
+	z-index: 10;
+}
+.News-feed::-webkit-scrollbar { 
+    display: none; 
+}
+.News-feed-item{
+	background-size: 100% 100%;
+	width: 500px;
+	position:relative;
+}
+.News-feed-item-blank{
+	height: 250px;
+	background-image: url('./images/update_background.jpg');
+}
+.News-feed-item-header{
+	height: 150px;
+	background-image: url('./images/heading_background.jpg');
+}
 /*WIDGET*/
+.Animate-more-info-button{
+	animation: button-double-nudge 3s infinite linear;
+	height: 50px;
+	width: 50px;
+	z-index: 29;
+}
+@keyframes button-double-nudge{
+	0%{right: 40px;}
+	10%{right: 30px;}
+	20%{right: 40px;}
+	30%{right: 30px;}
+	40%{right: 40px;}
+	100%{right: 40px;}
+}
 #animateBackground{
 	background-image: url('./images/hotel_tonight_ad_background.png');
 	background-size: 100% 100%;
@@ -30,7 +76,13 @@
 	}
 }
 .Widget-container{
-	position:relative;
+  position: relative;
+}
+.Center-block{
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
 }
 div[class^="Widget-layer"]{
 	height:250px;
@@ -42,13 +94,13 @@ div[class^="Widget-layer"] img{
 	width: 501px;
 }
 .Widget-layer-1{
-	z-index: 10;
+	z-index: 25;
 }
 .Widget-layer-2{
-	z-index: 9;
+	z-index: 20;
 }
 .Widget-layer-3{
-	z-index: 8;
+	z-index: 15;
 }
 
 @keyframes App-logo-spin {

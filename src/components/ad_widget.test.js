@@ -39,4 +39,12 @@ describe('mouseCoordsInsideBlock', () => {
 										
 		expect(wrapper.instance().mouseCoordsInsideBlock({x: 100, y: 40})).to.be.false;
 	});
+});
+
+describe('filterBlocksByFilled', () => {
+	it('returns blocks filtered by attribute filled', () => {
+		const wrapper = shallow(<AdWidget />);
+		wrapper.setState({hBlockCoords: Array.apply(null, Array(8)).map(() => {return {filled: true}})});
+		expect(wrapper.instance().filterBlocksByFilled().length).to.equal(8);
+	});
 })
