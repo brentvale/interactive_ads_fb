@@ -7,16 +7,28 @@ export default class AdWidgetLayerThreeFill extends Component{
 	}
 	
 	render(){
-		const { userHasTouched, mouseCoords } = this.props;
+		const { userHasTouched, hBlockCoords } = this.props;
 	
 		if(userHasTouched){
-			const mouseCoordsDisplay = mouseCoords.map((obj, idx) => {
-				return <span key={idx} style={{position:'absolute', left: obj.x, top: obj.y, backgroundColor: 'blue', height: '10px', width: '10px'}}></span>
+			//Sample el of hBlockCoords {leftX: 175, bottomY: 100, width: 20, height: 20, filled: false}
+			const hBlocksFiltered = hBlockCoords.filter((el) => {
+				if(el.filled){
+					return true;
+				} else {
+					return false;
+				}
 			});
-			
+			const hBlocksDisplay = hBlocksFiltered.map((el, idx) => {
+				return <span key={idx} style={{	position: 'absolute', 
+																				backgroundColor: '#3b5998',
+																				top: `${el.bottomY - el.height}px`, 
+																				left: `${el.leftX}px`, 
+																				height: `${el.height}px`,
+																				width: `${el.width}px`}}></span>;
+			})											
 			return(
 				<div  className="Widget-layer-3">
-					{ mouseCoordsDisplay }
+					{hBlocksDisplay}
 				</div>
 			)
 		} else {
@@ -31,6 +43,6 @@ export default class AdWidgetLayerThreeFill extends Component{
 }
 
 AdWidgetLayerThreeFill.propTypes = {
-	mouseCoords: PropTypes.array.isRequired,
+	hBlockCoords: PropTypes.array.isRequired,
 	userHasTouched: PropTypes.bool.isRequired,	
 }
